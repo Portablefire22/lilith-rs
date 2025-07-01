@@ -1,0 +1,7 @@
+{% extends "base" %}
+{% block body %}
+<h1 >
+  Hello, world!
+</h1>
+</br>
+{% endblock body %}

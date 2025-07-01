@@ -1,0 +1,10 @@
+:root {
+  --background-color: #343a40;
+  --foreground-color: #383f47;
+  --debug-color: hotpink;
+  --text-navbar: #F5A9B8;
+  --text-navbar-arrow: #5BCEFA;
+  --text-navbar-arrow-hover: #11b8f8;
+  --text-navbar-hover: gray;
+  --horizontal-separator: #5BCEFA;
+}

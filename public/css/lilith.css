@@ -1,0 +1,158 @@
+html {
+  height: 100%;
+}
+body {
+  font-family: "Rubik", sans-serif;
+  background-color: var(--background-color);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.footer, .navbar {
+  width: 100%;
+  /* background-color: var(--debug-color); */
+}
+
+.footer {
+  padding: 0;
+  margin: .25em;
+}
+
+.footer-links {
+  font-size: 1.5em;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-links a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--text-navbar);
+}
+
+.footer-links a:hover {
+  color: var(--text-navbar-hover);
+  transition: 0.3s;
+}
+
+.vertical-rule {
+  border-left: 2px solid var(--horizontal-separator);
+  border-radius: 1em;
+  min-height: 90%;
+  height: 1em;
+  margin-left: 0.25em;
+  margin-right: 0.25em;
+}
+
+.navbar {
+  top: 0;
+  height: 3em;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.25em;
+}
+
+.navbar hr, .footer hr {
+  color: var(--horizontal-separator);
+  border: .1em solid;
+  border-radius: 1em;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  font-size: 1em;
+  width: 100%;
+}
+
+.navbar-item {
+  margin-left: 0.75em;
+}
+
+.navbar-arrow {
+  display: none;
+  cursor: pointer;
+}
+
+.navbar-arrow:hover {
+  color: var(--text-navbar-arrow-hover);
+}
+
+@media screen and (max-width: 775px) {
+  .navbar-item:not(#navbar-active) {display:none;}
+  #navbar-active{
+    float: right;
+    display: block;
+    margin-left: 0.1em;
+    margin-right: 0.1em;
+  }
+
+  .navbar-arrow {
+    display: block;
+    float: right;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-navbar-arrow);
+  }
+}
+
+
+.navbar-brand {
+  float: left;
+}
+
+.navbar-item {
+  float: right;
+}
+
+.navbar-brand, .navbar-item, .navbar-burger {
+  font-size: 2em;
+  text-decoration: none;
+  color: var(--text-navbar);
+}
+
+
+
+.navbar-brand:hover, .navbar-item:hover {
+  color: var(--text-navbar-hover);
+  transition: 0.3s;
+}
+
+.page {
+  background-color: var(--foreground-color);
+  border-radius: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  transition: color 0s;
+  flex: 1;
+}
+
+h1 {
+  padding: 0;
+  margin: 0;
+}
+
+@media screen and (max-width: 1600px) {
+  .guttering {
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .guttering {
+    margin-right: auto;
+    margin-left: auto;
+    width: 1439px;
+  }
+}
+
+.guttering {
+  max-width: 1600px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}

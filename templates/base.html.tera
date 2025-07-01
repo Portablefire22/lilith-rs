@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html data-bs-theme="light">
+
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Lilith.rs - {%block page_name%} Home {%endblock page_name%}</title>
+    <meta name="description" content="{%block page_description%}The homepage of Lilith.rs{%endblock page_description%}"> 
+    {% block css %}
+    <link rel="preload" href="/public/css/lilith.css" as="style"/>
+    <link rel="stylesheet" href="/public/css/lilith.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preload" href="/public/css/theme-light.css" as="style"/>
+    <link rel="preload" href="/public/css/theme-dark.css" as="style"/>
+    <link rel="stylesheet" href="/public/css/theme-light.css" id="theme-css"/>
+    {% endblock css %}
+    {% endblock head %}
+</head>
+
+<body>
+{%block body_hijack%}
+<div class="guttering">
+{%include "navbar"%}
+<div class="page">
+{%block body%}
+
+{%endblock body%}
+</div>
+{%include "footer"%}
+{%endblock body_hijack%}
+</div>
+</body>
+<script src="/public/js/theme.js"></script>
+<script src="/public/js/navbar.js"></script>
+</html>

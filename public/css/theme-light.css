@@ -1,0 +1,8 @@
+:root {
+  --background-color: white;
+  --debug-color: lightgreen;
+  --text-navbar: black;
+  --text-navbar-arrow: gray;
+  --text-navbar-hover: gray;
+  --horizontal-separator: #5BCEFA;
+}
