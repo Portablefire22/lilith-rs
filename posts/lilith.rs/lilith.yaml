@@ -1,4 +1,4 @@
-name: "Kitten.rs"
+name: "Lilith.rs"
 description: "A brief discussion on this website."
 image: "/public/projects/lilith.rs/icon.png"
 tags:
@@ -10,4 +10,4 @@ tags:
   - "Rust"
   - "Post-mortem"
 content_path: "content.md"
-finished: false
+blog_finished: false

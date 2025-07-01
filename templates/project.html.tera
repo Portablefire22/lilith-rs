@@ -1,0 +1,6 @@
+{% extends "base" %}
+{% block page_name %}Project{% endblock %}
+{% block page_description %}Lilith's Project{% endblock %}
+{% block body %}
+
+{% endblock body %}

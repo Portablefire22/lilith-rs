@@ -1,0 +1,6 @@
+{% extends "base" %}
+{% block page_name %}All Blog Posts{% endblock %}
+{% block page_description %}All of Lilith's blog posts{% endblock %}
+{% block body %}
+<h1>All Blog Posts</h1>
+{% endblock body %}

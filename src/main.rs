@@ -1,13 +1,18 @@
 use std::{env, path::PathBuf};
 
+use diesel::{r2d2::{ConnectionManager, Pool}, SqliteConnection};
 use rocket::{fs::{relative, FileServer, Options}, http::Status, Request};
 use rocket_dyn_templates::{context, Template};
 
-use crate::contact::{ContactError, ContactInformation};
+use crate::{contact::{ContactError, ContactInformation}, database::{get_connection_pool, init_post_db}};
 
 #[macro_use] extern crate rocket;
 
 mod contact;
+mod database;
+mod project;
+mod blog;
+mod schema;
 
 #[get("/")]
 fn index() -> Result<Template, Status> {
@@ -49,6 +54,10 @@ fn general_error(status: Status, req: &Request) -> Template {
     Template::render("general_error", context!{status, message})
 }
 
+pub(crate) struct SiteState {
+    pub(crate) pool: Pool<ConnectionManager<SqliteConnection>>
+}
+
 #[main]
 async fn main() -> Result<(), rocket::Error> {
     dotenvy::dotenv().expect("Could not load .env file");
@@ -57,13 +66,19 @@ async fn main() -> Result<(), rocket::Error> {
     } else {
         panic!("Could not initialise logging, LOG_CONFIG_PATH variable not set correctly!")
     }
+    
+    let pool = get_connection_pool().unwrap();
+    init_post_db(&pool).unwrap();
+    
     info!("Launching Website!");
 
     let _rocket = rocket::build()
         .attach(Template::fairing())
-        // .manage(SiteState{pool: pool})
+        .manage(SiteState{pool: pool})
         .mount("/public", FileServer::new(relative!("/public"), Options::Missing | Options::NormalizeDirs))
         .mount("/", routes![index, contact_page])
+        .mount("/projects", routes![project::route::all_projects, project::route::project_page])
+        .mount("/blog", routes![blog::route::all_blog_posts, blog::route::blog_post_page])
         .register("/", catchers![not_found, internal_error, general_error])
         .launch()
         .await?;

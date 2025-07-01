@@ -25,7 +25,7 @@ loggers:
 
   # Route log events sent to the "app::requests" logger to the "requests" appender,
   # and *not* the normal appenders installed at the root
-  mdrs:
+  lilith:
     level: debug
     appenders:
       - requests
