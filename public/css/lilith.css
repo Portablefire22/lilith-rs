@@ -8,6 +8,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  color: var(--text);
 }
 
 .footer, .navbar {
@@ -126,8 +127,8 @@ body {
   border-radius: 1em;
   margin-top: 1em;
   margin-bottom: 1em;
-  padding: 0.5em;
-  transition: color 0s;
+  /* padding: 0.5em; */
+  display: flex;
   flex: 1;
 }
 
@@ -156,4 +157,10 @@ h1 {
   display: flex;
   flex: 1;
   flex-direction: column;
+}
+
+.centre {
+  margin: auto;
+  align-self: center;
+  text-align: center;
 }

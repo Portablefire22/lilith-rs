@@ -1,8 +1,10 @@
 :root {
   --background-color: white;
+  --foreground-color: white;
   --debug-color: lightgreen;
-  --text-navbar: black;
+  --text-navbar: #F5A9B8;
   --text-navbar-arrow: gray;
-  --text-navbar-hover: gray;
+  --text-navbar-hover: #ed647f;
   --horizontal-separator: #5BCEFA;
+  --text: black;
 }
