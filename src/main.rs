@@ -1,13 +1,33 @@
-use std::env;
+use std::{env, path::PathBuf};
 
 use rocket::{fs::{relative, FileServer, Options}, http::Status, Request};
 use rocket_dyn_templates::{context, Template};
 
+use crate::contact::{ContactError, ContactInformation};
+
 #[macro_use] extern crate rocket;
+
+mod contact;
 
 #[get("/")]
 fn index() -> Result<Template, Status> {
     Ok(Template::render("index", context!{}))
+}
+
+#[get("/contact")]
+fn contact_page() -> Result<Template, Status> {
+    let contacts = match ContactInformation::from_file(PathBuf::from("public/yaml/contact.yaml")) {
+        Ok(contacts) => contacts,
+        Err(ContactError::Io(err)) => {
+            error!("Could not open contacts: {:?}", err);
+            return Err(Status::NotFound)
+        },
+        Err(ContactError::Serde(err)) => {
+            error!("Could not open contacts: {:?}", err);
+            return Err(Status::InternalServerError)
+        },
+    };
+    Ok(Template::render("contact", context!{contacts}))
 }
 
 #[catch(404)]
@@ -43,7 +63,7 @@ async fn main() -> Result<(), rocket::Error> {
         .attach(Template::fairing())
         // .manage(SiteState{pool: pool})
         .mount("/public", FileServer::new(relative!("/public"), Options::Missing | Options::NormalizeDirs))
-        .mount("/", routes![index])
+        .mount("/", routes![index, contact_page])
         .register("/", catchers![not_found, internal_error, general_error])
         .launch()
         .await?;

@@ -11,6 +11,10 @@ body {
   color: var(--text);
 }
 
+a {
+  color: var(--text-link);
+}
+
 .footer, .navbar {
   width: 100%;
   /* background-color: var(--debug-color); */
@@ -129,6 +133,7 @@ body {
   margin-bottom: 1em;
   /* padding: 0.5em; */
   display: flex;
+  flex-direction: column;
   flex: 1;
 }
 
@@ -163,4 +168,36 @@ h1 {
   margin: auto;
   align-self: center;
   text-align: center;
+}
+
+.contacts {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.contacts a {
+  text-decoration: none;
+}
+
+.contact-info {
+  border: 1px var(--text-link) solid;
+  border-radius: 1em;
+  margin-bottom: 1em;
+  padding: 0.25em;
+}
+
+.contact-info a {
+  color: var(--text-link);
+}
+
+.contact-info h1 {
+  font-weight: bold;
+  font-size: 3em;
+}
+
+.contact-info h2, .contact-info a {
+  line-height: 0em;
 }

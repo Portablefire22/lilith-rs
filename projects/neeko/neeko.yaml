@@ -1,0 +1,14 @@
+name: "Neeko"
+description: "Playing Frankenstein to create my own monster."
+image: "/public/projects/neeko/icon.png"
+tags:
+  - "League of Legends"
+  - "Reverse Engineering"
+  - "Golang"
+  - "Action Message Format"
+  - "RTMP"
+  - "Neeko"
+content_path: "content.md"
+finished: false
+project_finished: false
+hiatus_since: "2025-05-19"

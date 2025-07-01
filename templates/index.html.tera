@@ -1,7 +1,9 @@
 {% extends "base" %}
 {% block body %}
-<h1 >
-  Hello, world!
-</h1>
-</br>
+<h1>Heya!</h1>
+<p>I <i>love</i> creating software that integrates with systems, be that <a href="" target="_blank">re-creating existing functionality</a> or 
+<a href="/projects/neeko" target="_blank">resurrecting a dead server</a>. Web design is <i>NOT</i> my passion and can often be seen in my "programmer art" 
+whenever I have to design any sort of UI :D
+
+</p>
 {% endblock body %}

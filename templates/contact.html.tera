@@ -1,0 +1,23 @@
+{% extends "base" %}
+{% block page_name %}Contact{% endblock %}
+{% block page_description %}Lilith's Contact Information{% endblock %}
+{% block body %}
+<h1>Contact</h1>
+<p>Want to contact me? These are probably your best bet for getting a hold of me</p>
+<div class="contacts">
+{% for contact in contacts %}
+  <a 
+    {% if contact.url %}
+      href={{contact.url}}
+      target="_blank" 
+    {% endif %}>
+  <div class="contact-info">
+    <h1>{{contact.location_name}}</h1>
+    {% if contact.value %}
+      <h2>{{contact.value}}</h2>
+    {% endif %}
+  </div>
+  </a>
+{% endfor %}
+</div>
+{% endblock body %}

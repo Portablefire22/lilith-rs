@@ -1,0 +1,13 @@
+name: "Kitten.rs"
+description: "A brief discussion on this website."
+image: "/public/projects/lilith.rs/icon.png"
+tags:
+  - "Lilith.rs"
+  - "Rocket.rs"
+  - "Tera"
+  - "Kitten.rs"
+  - "Website"
+  - "Rust"
+  - "Post-mortem"
+content_path: "content.md"
+finished: false

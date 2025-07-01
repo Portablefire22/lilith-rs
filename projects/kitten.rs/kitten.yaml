@@ -1,0 +1,10 @@
+name: "Kitten.rs"
+description: "A website building post-mortem."
+image: "/public/projects/kitten.rs/icon.png"
+tags:
+  - "Kitten.rs"
+  - "Website"
+  - "Rust"
+  - "Post-mortem"
+content_path: "content.md"
+finished: false
