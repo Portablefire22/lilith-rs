@@ -6,7 +6,7 @@
   <a class="navbar-item" href="/contact">Contact</a>
   <a class="navbar-item" href="/about">About</a>
   <a class="navbar-item" href="/blog">Blog</a>
-  <a id="navbar-active" class="navbar-item" href="/projects">Projects</a>
+  <a class="navbar-item" href="/projects">Projects</a>
   <a class="navbar-arrow" onclick="navbarLeft()"><i class="fa-solid fa-arrow-left"></i></a>
   </div>
   <hr/>
