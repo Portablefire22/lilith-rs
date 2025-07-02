@@ -1,11 +1,12 @@
 use std::fs;
 
 use comrak::plugins::syntect::SyntectAdapterBuilder;
-use diesel::{query_dsl::methods::{FilterDsl, SelectDsl}, ExpressionMethods, RunQueryDsl, SelectableHelper};
+use diesel::{ExpressionMethods, QueryDsl, RunQueryDsl, SelectableHelper};
 use rocket::{http::Status, State};
 use rocket_dyn_templates::{context, tera::Tera, Template};
 
 use crate::{blog::{QueryPost, QueryTag}, SiteState};
+
 
 
 #[get("/<blog>")]
@@ -49,15 +50,35 @@ pub(crate) fn blog_post_page(blog: &str, state: &State<SiteState>) -> Result<Tem
     
     Ok(Template::render("blog_post", context!{post, post_content, tags}))
 }
+#[get("/?<order>&<tags>&<project_done>&<blog_done>")]
+pub(crate) fn all_blog_posts(state: &State<SiteState>,
+    order: Option<&str>,
+    tags: Option<Vec<&str>>, 
+    project_done: Option<bool>,
+    blog_done: Option<bool>) -> Result<Template, Status> {
+    let mut connection = match state.pool.get() {
+        Err(err) => {
+            error!("Error getting connection from pool: {:?}", err);
+            return Err(Status::InternalServerError);
+        },
+        Ok(pool) => pool,
+    };
+    
+    let order = order.unwrap_or("desc");
+    let project_done = project_done.unwrap_or(true);
+    let blog_done = blog_done.unwrap_or(true);
 
-#[get("/")]
-pub(crate) fn all_blog_posts(state: &State<SiteState>) -> Result<Template, Status> {
-   let mut connection = match state.pool.get() {
-       Err(err) => {
-           error!("Error getting connection from pool: {:?}", err);
-           return Err(Status::InternalServerError);
-       },
-       Ok(pool) => pool,
-   };
-   Ok(Template::render("all_blog_posts", context!{}))
+    use crate::schema::blog_posts::dsl::*;
+    let x = blog_posts.select(QueryPost::as_select());
+    let posts = match order {
+        "asc" => x.order_by(modified.asc()).get_results(&mut connection),
+        "desc" => x.order_by(modified.desc()).get_results(&mut connection),
+        _ => return Err(Status::UnprocessableEntity),
+    };
+
+    let Ok(posts) = posts else { return Err(Status::InternalServerError)};
+    // .;
+
+   debug!("Order: {:?} | Tags: {:?} | Project_finished: {:?} | Blog_Finished: {:?}", order, tags, project_done, blog_done);
+   Ok(Template::render("all_blog_posts", context!{posts}))
 } 

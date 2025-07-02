@@ -3,4 +3,26 @@
 {% block page_description %}All of Lilith's blog posts{% endblock %}
 {% block body %}
 <h1>All Blog Posts</h1>
+<div class="all-posts">
+{% for post in posts %}
+  <a class="clickable-card" href="/blog/{{post.name}}">
+  <div class="post-preview">
+    <div class = "image">
+        <img 
+      {% if post.image %}
+        src={{post.image}}
+      {% else %}
+        src="/public/img/card_default.png"
+      {% endif %}
+        />
+    </div>
+    <div class="post-preview-info">
+      <h1>{{post.name}}</h1>
+      <small>{{post.modified}}</small>
+      <p>{{post.description}}</p>
+    </div>
+  </div>
+  </a>
+{% endfor %}
+</div>
 {% endblock body %}

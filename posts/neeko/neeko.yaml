@@ -1,6 +1,5 @@
 name: "Neeko"
 description: "Playing Frankenstein to create my own monster."
-image: "/public/projects/neeko/icon.png"
 tags:
   - "League of Legends"
   - "Reverse Engineering"

@@ -1,6 +1,5 @@
 name: "Kitten.rs"
 description: "A website building post-mortem."
-image: "/public/projects/kitten.rs/icon.png"
 tags:
   - "Kitten.rs"
   - "Website"
