@@ -65,7 +65,6 @@ pub(crate) fn all_blog_posts(state: &State<SiteState>,
     };
     
     let order = order.unwrap_or("desc");
-    let project_done = project_done.unwrap_or(true);
     let show_unfinished = show_unfinished.unwrap_or(false);
 
     use crate::schema::blog_posts::dsl::*;
@@ -80,13 +79,13 @@ pub(crate) fn all_blog_posts(state: &State<SiteState>,
     };
 
     // Include unfinished in the search?
-    query = if show_unfinished {
-        query
-    } else {
-        query.filter(blog_finished.eq(true))
+    if !show_unfinished {
+        query = query.filter(blog_finished.eq(true))
     };
-
-    query = query.filter(project_finished.eq(project_done));
+    
+    if let Some(project_done) = project_done {
+        query = query.filter(project_finished.eq(project_done));
+    }
 
     let posts: Vec<QueryPost> = match query.load(&mut connection) {
         Ok(posts) => posts,
