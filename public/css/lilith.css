@@ -201,3 +201,8 @@ h1 {
 .contact-info h2, .contact-info a {
   line-height: 0em;
 }
+
+.blog h2 {
+  padding: 0;
+  margin: 0;
+}

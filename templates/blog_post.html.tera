@@ -9,5 +9,7 @@
     {{tag.tag}}{%if not loop.last%},{%endif%}
   {%endfor%}
 </small>
+<div class="blog">
 {{post_content | safe}}
+</div>
 {% endblock body %}

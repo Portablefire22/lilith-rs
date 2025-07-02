@@ -57,7 +57,10 @@ at [dev.kitten.rs](https://dev.kitten.rs).
 
 # What's Up With The Name?
 
-If you're questioning that then you probably know me irl :) It's not that hard to figure out but 
-let's setup a little scavenger hunt for those who haven't figured it out yet! There are 3 colours 
-featured prominently on the site - not including hovers - and those three colours can be 
-assembled into a five striped flag :D 
+If you're questioning that then you probably know me irl :)
+
+It's not that hard to figure out but let's setup a little scavenger hunt for those who haven't 
+figured it out yet! There are 4 colours featured prominently on the site - not including hovers - 
+and three of those colours can be assembled into a five striped flag :D 
+
+Or you could just click [here](https://en.wikipedia.org/wiki/Transgender_flag) if you're lazy!
