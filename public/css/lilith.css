@@ -23,6 +23,9 @@ a {
 .footer {
   padding: 0;
   margin: .25em;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
 }
 
 .footer-links {
@@ -65,10 +68,9 @@ a {
   color: var(--horizontal-separator);
   border: .1em solid;
   border-radius: 1em;
-  margin-top: 0.25em;
-  margin-bottom: 0.25em;
+  margin: 0.25em 0 0.25em 0;
   font-size: 1em;
-  width: 100%;
+  align-self: stretch;
 }
 
 .navbar-item {
