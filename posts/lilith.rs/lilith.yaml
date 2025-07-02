@@ -9,4 +9,4 @@ tags:
   - "Website"
   - "Rust"
 content_path: "content.md"
-blog_finished: false
+blog_finished: true

@@ -50,12 +50,12 @@ pub(crate) fn blog_post_page(blog: &str, state: &State<SiteState>) -> Result<Tem
     
     Ok(Template::render("blog_post", context!{post, post_content, tags}))
 }
-#[get("/?<order>&<tags>&<project_done>&<blog_done>")]
+#[get("/?<order>&<tags>&<project_done>&<show_unfinished>")]
 pub(crate) fn all_blog_posts(state: &State<SiteState>,
     order: Option<&str>,
     tags: Option<Vec<&str>>, 
     project_done: Option<bool>,
-    blog_done: Option<bool>) -> Result<Template, Status> {
+    show_unfinished: Option<bool>) -> Result<Template, Status> {
     let mut connection = match state.pool.get() {
         Err(err) => {
             error!("Error getting connection from pool: {:?}", err);
@@ -66,19 +66,35 @@ pub(crate) fn all_blog_posts(state: &State<SiteState>,
     
     let order = order.unwrap_or("desc");
     let project_done = project_done.unwrap_or(true);
-    let blog_done = blog_done.unwrap_or(true);
+    let show_unfinished = show_unfinished.unwrap_or(false);
 
     use crate::schema::blog_posts::dsl::*;
-    let x = blog_posts.select(QueryPost::as_select());
-    let posts = match order {
-        "asc" => x.order_by(modified.asc()).get_results(&mut connection),
-        "desc" => x.order_by(modified.desc()).get_results(&mut connection),
+    // let mut x = blog_posts.select(QueryPost::as_select()).filter(project_finished.eq(project_done)).filter(blog_finished.eq(!show_unfinished));
+
+    let mut query = blog_posts.into_boxed().select(QueryPost::as_select());
+    
+    query = match order {
+        "asc" => query.order_by(modified.asc()),
+        "desc" => query.order_by(modified.desc()),
         _ => return Err(Status::UnprocessableEntity),
     };
 
-    let Ok(posts) = posts else { return Err(Status::InternalServerError)};
-    // .;
+    // Include unfinished in the search?
+    query = if show_unfinished {
+        query
+    } else {
+        query.filter(blog_finished.eq(true))
+    };
 
-   debug!("Order: {:?} | Tags: {:?} | Project_finished: {:?} | Blog_Finished: {:?}", order, tags, project_done, blog_done);
-   Ok(Template::render("all_blog_posts", context!{posts}))
+    query = query.filter(project_finished.eq(project_done));
+
+    let posts: Vec<QueryPost> = match query.load(&mut connection) {
+        Ok(posts) => posts,
+        Err(err) => {
+            error!("Error accssing all blog posts: {:?}", err);
+            return Err(Status::InternalServerError);
+        }
+    };
+    debug!("Order: {:?} | Tags: {:?} | Project_finished: {:?} | Blog_Finished: {:?}", order, tags, project_done, show_unfinished);
+    Ok(Template::render("all_blog_posts", context!{posts}))
 } 

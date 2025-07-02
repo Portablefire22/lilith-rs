@@ -18,7 +18,7 @@
     </div>
     <div class="post-preview-info">
       <h1>{{post.name}}</h1>
-      <small>{{post.modified}}</small>
+      <small>Last Updated: {{post.modified}}</small>
       <p>{{post.description}}</p>
     </div>
   </div>
