@@ -2,7 +2,7 @@
 {% block page_name %}All Blog Posts{% endblock %}
 {% block page_description %}All of Lilith's blog posts{% endblock %}
 {% block body %}
-<h1>All Blog Posts</h1>
+<h1 class="centre-text">All Blog Posts</h1>
 <div class="all-posts">
 {% for post in posts %}
   <a class="clickable-card" href="/blog/{{post.name}}">

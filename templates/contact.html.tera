@@ -2,8 +2,8 @@
 {% block page_name %}Contact{% endblock %}
 {% block page_description %}Lilith's Contact Information{% endblock %}
 {% block body %}
-<h1>Contact</h1>
-<p>Want to contact me? These are probably your best bet for getting a hold of me</p>
+<h1 class="centre-text">Contact</h1>
+<p class="centre-text">Want to contact me? These are probably your best bet for getting a hold of me</p>
 <div class="contacts">
 {% for contact in contacts %}
   <a 

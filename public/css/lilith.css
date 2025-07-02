@@ -139,6 +139,7 @@ a {
   flex: 1;
 }
 
+
 h1 {
   padding: 0;
   margin: 0;
@@ -169,6 +170,10 @@ h1 {
 .centre {
   margin: auto;
   align-self: center;
+  text-align: center;
+}
+
+.centre-text {
   text-align: center;
 }
 
