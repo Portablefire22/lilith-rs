@@ -3,6 +3,11 @@
 {% block page_description %}Lilith's Post{% endblock %}
 {% block body %}
 <h1>{{post.name}}</h1>
-
-  {{post_content | safe}}
+<small>Last Updated: {{post.modified}}</small>
+<small>Tags: 
+  {% for tag in tags %} 
+    {{tag.tag}}{%if not loop.last%},{%endif%}
+  {%endfor%}
+</small>
+{{post_content | safe}}
 {% endblock body %}

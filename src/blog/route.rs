@@ -5,7 +5,7 @@ use diesel::{query_dsl::methods::{FilterDsl, SelectDsl}, ExpressionMethods, RunQ
 use rocket::{http::Status, State};
 use rocket_dyn_templates::{context, tera::Tera, Template};
 
-use crate::{blog::QueryPost, SiteState};
+use crate::{blog::{QueryPost, QueryTag}, SiteState};
 
 
 #[get("/<blog>")]
@@ -26,6 +26,13 @@ pub(crate) fn blog_post_page(blog: &str, state: &State<SiteState>) -> Result<Tem
             return Err(Status::NotFound);
         }
     };
+    let tags: Vec<QueryTag> = match blog_tags.filter(project.eq(post.id)).select(QueryTag::as_select()).get_results(&mut connection) {
+        Ok(tags) => tags,
+        Err(err) => { 
+            error!("Error accessing blog tags: {:?}", err);
+            return Err(Status::InternalServerError);
+        }
+    };
     let post_content = match fs::read_to_string(post.content_path.clone()) {
         Err(err) => {
             error!("Error reading content file: {:?}", err);
@@ -40,7 +47,7 @@ pub(crate) fn blog_post_page(blog: &str, state: &State<SiteState>) -> Result<Tem
         },
     };
     
-    Ok(Template::render("blog_post", context!{post, post_content}))
+    Ok(Template::render("blog_post", context!{post, post_content, tags}))
 }
 
 #[get("/")]

@@ -2,7 +2,7 @@ use chrono::{NaiveDate, NaiveDateTime};
 use diesel::{prelude::{Insertable, Queryable}, Selectable};
 use serde::{Deserialize, Serialize};
 
-use crate::schema::blog_posts;
+use crate::schema::{blog_posts, blog_tags};
 
 pub mod route;
 
@@ -59,6 +59,25 @@ pub(crate) struct QueryPost {
     #[serde(with = "date")]
     pub(crate) modified: NaiveDateTime,
 }
+
+#[derive(Insertable)]
+#[diesel(table_name=blog_tags)]
+pub(crate) struct InsertTag {
+    pub(crate) tag: String,
+    pub(crate) project: i32,
+}
+
+
+#[derive(Queryable, Selectable, Serialize, PartialEq, Eq, PartialOrd)]
+#[diesel(table_name=blog_tags)]
+#[diesel(check_for_backend(diesel::sqlite::Sqlite))]
+pub(crate) struct QueryTag {
+    pub(crate) id: i32,
+    pub(crate) tag: String,
+    pub(crate) project: i32,
+}
+
+
 
 
 mod date {

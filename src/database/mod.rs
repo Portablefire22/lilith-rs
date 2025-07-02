@@ -3,7 +3,7 @@ use std::{env::{self, VarError}, fs, path::PathBuf, time::{Instant, UNIX_EPOCH}}
 use chrono::DateTime;
 use diesel::{delete, insert_into, r2d2::{ConnectionManager, Pool, PoolError, PooledConnection}, sql_query, RunQueryDsl, SqliteConnection};
 
-use crate::blog::{InsertPost, Post};
+use crate::{blog::{InsertPost, InsertTag, Post, QueryPost}, schema::blog_tags};
 
 #[derive(Debug)]
 pub(crate) enum DbError {
@@ -42,12 +42,12 @@ pub(crate) fn clear_db(pool: &Pool<ConnectionManager<SqliteConnection>>) {
     let mut connection = pool.get().unwrap();
     delete(blog_posts).execute(&mut connection).unwrap();
     delete(blog_tags).execute(&mut connection).unwrap();
-    sql_query("DELETE FROM sqlite_sequence where name='projects'").execute(&mut connection).unwrap();
+    sql_query("DELETE FROM sqlite_sequence where name='blog_posts' OR name='blog_tags'").execute(&mut connection).unwrap();
     info!("Cleared DB");
 }
 
 pub(crate) fn add_blog_file_to_db(post_path: &PathBuf, connection: &mut PooledConnection<ConnectionManager<SqliteConnection>>) -> Result<(), DbError> {
-    use crate::schema::blog_posts::dsl::blog_posts;
+    use crate::schema::{blog_posts::dsl::{blog_posts}, blog_tags::dsl::blog_tags};
     let yaml = match fs::read_to_string(&post_path) { 
         Err(err) => return Err(DbError::IoError(err)),
         Ok(yaml) => yaml,
@@ -76,10 +76,26 @@ pub(crate) fn add_blog_file_to_db(post_path: &PathBuf, connection: &mut PooledCo
         hiatus_since: post.hiatus_since,
         modified,
     };
+
+
+
     info!("Added project: {}", post.name);
-    let _ = insert_into(blog_posts)
+    let p: QueryPost = insert_into(blog_posts)
         .values(tmp_post)
-        .execute(connection).unwrap();
+        .get_result(connection).unwrap();
+    info!("Adding project tags...");
+    for tag in post.tags {
+        let tmp_tag = InsertTag {
+            tag,
+            project: p.id,
+        };
+        let _ = insert_into(blog_tags)
+            .values(tmp_tag)
+            .execute(connection).unwrap();
+    }
+
+    info!("Added project tags!");
+
     Ok(())
 }
 
