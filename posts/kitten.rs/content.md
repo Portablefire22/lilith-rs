@@ -33,6 +33,6 @@ routing code deals mental damage over time.
 
 ## Project Showcase
 
-This 
+As mentioned previously, the website was basically 
 
 ## Too Static

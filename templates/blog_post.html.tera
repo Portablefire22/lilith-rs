@@ -1,6 +1,6 @@
 {% extends "base" %}
-{% block page_name %}Blog Post{% endblock %}
-{% block page_description %}Lilith's Post{% endblock %}
+{% block page_name %}Blog @ {{post.name}}{% endblock %}
+{% block page_description %}{{post.description}}{% endblock %}
 {% block body %}
 <h1>{{post.name}}</h1>
 <small>Last Updated: {{post.modified}}</small>

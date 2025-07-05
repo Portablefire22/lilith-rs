@@ -3,4 +3,7 @@
 {% block page_description %}All of Lilith's projects{% endblock %}
 {% block body %}
 <h1 class="centre-text">All Projects</h1>
+
+<h2 class="centre-text">Nothing Yet!</h2> 
+<img src="/public/img/cat.svg" class="svg centre"/>
 {% endblock body %}

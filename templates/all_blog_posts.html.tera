@@ -12,7 +12,7 @@
       {% if post.image %}
         src={{post.image}}
       {% else %}
-        src="/public/img/card_default.png"
+        src="/public/img/card_default_low.png"
       {% endif %}
         />
     </div>

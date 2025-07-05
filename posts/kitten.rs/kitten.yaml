@@ -5,5 +5,5 @@ tags:
   - "Website"
   - "Rust"
   - "Post-mortem"
-content_path: "content.md"
-blog_finished: false
+content_path: "content v2.md"
+blog_finished: true

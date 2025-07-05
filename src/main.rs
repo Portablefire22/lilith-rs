@@ -35,6 +35,11 @@ fn contact_page() -> Result<Template, Status> {
     Ok(Template::render("contact", context!{contacts}))
 }
 
+#[get("/about")]
+fn about() -> Template {
+    Template::render("about", context!{})
+}
+
 #[catch(404)]
 fn not_found() -> Template {
     Template::render("not_found", context!{})
@@ -76,7 +81,7 @@ async fn main() -> Result<(), rocket::Error> {
         .attach(Template::fairing())
         .manage(SiteState{pool: pool})
         .mount("/public", FileServer::new(relative!("/public"), Options::Missing | Options::NormalizeDirs))
-        .mount("/", routes![index, contact_page])
+        .mount("/", routes![index, contact_page, about])
         .mount("/projects", routes![project::route::all_projects, project::route::project_page])
         .mount("/blog", routes![blog::route::all_blog_posts, blog::route::blog_post_page])
         .register("/", catchers![not_found, internal_error, general_error])

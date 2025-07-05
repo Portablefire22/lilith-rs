@@ -10,3 +10,7 @@
   --text-link: #5BCEFA;
   --card-background: #5BCEFA;
 }
+
+img.svg {
+  filter: brightness(0);
+}
