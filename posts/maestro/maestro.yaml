@@ -1,13 +1,10 @@
-name: "Neeko"
-description: "Playing Frankenstein to create my own monster."
+name: "Maestro Wiki"
+description: "Inner workings of maestro.dll for League of Legends 3.6.13_04_23_21_14."
 tags:
   - "League of Legends"
   - "Reverse Engineering"
-  - "Golang"
-  - "Action Message Format"
-  - "RTMP"
+  - "Maestro"
   - "Respite"
-  - "Neeko"
 content_path: "content.md"
 blog_finished: false
 project_finished: false

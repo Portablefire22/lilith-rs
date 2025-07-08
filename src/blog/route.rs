@@ -44,7 +44,10 @@ pub(crate) fn blog_post_page(blog: &str, state: &State<SiteState>) -> Result<Tem
            let builder = SyntectAdapterBuilder::new().theme("base16-ocean.dark");
             let adapter = builder.build();
             plugins.render.codefence_syntax_highlighter = Some(&adapter);
-            comrak::markdown_to_html_with_plugins(&markdown, &comrak::Options::default(), &plugins)
+            let mut options = comrak::Options::default();
+            options.extension.header_ids = Some("".to_string());
+            options.extension.table = true;
+            comrak::markdown_to_html_with_plugins(&markdown, &options, &plugins)
         },
     };
     
