@@ -4,12 +4,19 @@
 {% block body %}
 <h1>{{post.name}}</h1>
 <small>Last Updated: {{post.modified}}</small>
-<small>Tags: 
+<small>Tags:
   {% for tag in tags %} 
     {{tag.tag}}{%if not loop.last%},{%endif%}
   {%endfor%}
 </small>
+{% if post.hiatus_since %}
+    <small class="hiatus">Note: This project has been on hiatus since: <span id="date">{{post.hiatus_since}}</span> <span id="since"></span></small>
+{% endif %}
 <div class="blog">
 {{post_content | safe}}
 </div>
 {% endblock body %}
+
+{% block scripts %}
+<script src="/public/js/sinceDate.js"></script>
+{% endblock scripts %}

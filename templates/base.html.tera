@@ -33,4 +33,7 @@
 </body>
 <script src="/public/js/theme.js"></script>
 <script src="/public/js/navbar.js"></script>
+{%block scripts %}
+
+{%endblock scripts%}
 </html>

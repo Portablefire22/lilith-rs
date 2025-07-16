@@ -278,3 +278,8 @@ td, th {
   text-align: left;
   padding: 8px;
 }
+
+.hiatus {
+  color: var(--text-hiatus);
+  font-weight: bold;
+}
