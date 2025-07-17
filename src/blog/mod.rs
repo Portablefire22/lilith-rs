@@ -28,6 +28,8 @@ pub(crate) struct Post {
     #[serde(with = "date_option")]
     #[serde(default)]
     pub(crate) hiatus_since: Option<NaiveDateTime>,
+    /// Unique name for grouping related posts
+    pub(crate) collection: Option<String>,
 }
 
 #[derive(Insertable)]
@@ -41,6 +43,7 @@ pub(crate) struct InsertPost {
     pub(crate) project_finished: bool,
     pub(crate) hiatus_since: Option<NaiveDateTime>,
     pub(crate) modified: NaiveDateTime,
+    pub(crate) collection: Option<String>,
 }
 
 #[derive(Queryable, Selectable, Serialize, PartialEq, Eq, PartialOrd)]
@@ -58,6 +61,7 @@ pub(crate) struct QueryPost {
     pub(crate) hiatus_since: Option<NaiveDateTime>,
     #[serde(with = "date")]
     pub(crate) modified: NaiveDateTime,
+    pub(crate) collection: Option<String>,
 }
 
 #[derive(Insertable)]

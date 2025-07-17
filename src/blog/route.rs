@@ -53,12 +53,13 @@ pub(crate) fn blog_post_page(blog: &str, state: &State<SiteState>) -> Result<Tem
     
     Ok(Template::render("blog_post", context!{post, post_content, tags}))
 }
-#[get("/?<order>&<tags>&<project_done>&<show_unfinished>")]
+#[get("/?<order>&<tags>&<project_done>&<show_unfinished>&<group>")]
 pub(crate) fn all_blog_posts(state: &State<SiteState>,
     order: Option<&str>,
     tags: Option<Vec<&str>>, 
     project_done: Option<bool>,
-    show_unfinished: Option<bool>) -> Result<Template, Status> {
+    show_unfinished: Option<bool>,
+    group: Option<&str>) -> Result<Template, Status> {
     let mut connection = match state.pool.get() {
         Err(err) => {
             error!("Error getting connection from pool: {:?}", err);
@@ -66,7 +67,6 @@ pub(crate) fn all_blog_posts(state: &State<SiteState>,
         },
         Ok(pool) => pool,
     };
-    
     let order = order.unwrap_or("desc");
     let show_unfinished = show_unfinished.unwrap_or(false);
 
@@ -85,6 +85,10 @@ pub(crate) fn all_blog_posts(state: &State<SiteState>,
     if !show_unfinished {
         query = query.filter(blog_finished.eq(true))
     };
+
+    if let Some(col) = group {
+        query = query.filter(collection.eq(col));
+    }
     
     if let Some(project_done) = project_done {
         query = query.filter(project_finished.eq(project_done));

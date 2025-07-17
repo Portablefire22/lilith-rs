@@ -75,6 +75,7 @@ pub(crate) fn add_blog_file_to_db(post_path: &PathBuf, connection: &mut PooledCo
         project_finished: post.project_finished,
         hiatus_since: post.hiatus_since,
         modified,
+        collection: post.collection,
     };
 
 

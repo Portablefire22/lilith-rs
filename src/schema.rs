@@ -11,6 +11,7 @@ diesel::table! {
         project_finished -> Bool,
         hiatus_since -> Nullable<Timestamp>,
         modified -> Timestamp,
+        collection -> Nullable<Text>,
     }
 }
 

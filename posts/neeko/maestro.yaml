@@ -1,14 +1,15 @@
-name: "Neeko"
-description: "Playing Frankenstein to create my own monster."
+name: "Khada"
+description: "Re-creating the Maestro DLL."
 tags:
   - "League of Legends"
   - "Reverse Engineering"
   - "Golang"
   - "Action Message Format"
   - "RTMP"
+  - "Maestro"
+  - "Khada"
   - "Respite"
-  - "Neeko"
-content_path: "06-Neeko.md"
+content_path: "04-Maestro.md"
 blog_finished: false
 project_finished: false
 hiatus_since: "2025-05-19 14:57:00"

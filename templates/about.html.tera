@@ -11,18 +11,18 @@ Blackjack" target="_blank">a simple CLI implementation of Blackjack</a> to <a hr
 https://github.com/Portablefire22/Feline" target="_blank">music players</a>, and even 
 <a href="https://github.com/Portablefire22/Vulkan-Voxel" target="_blank">voxel game 
 engines</a>. Overtime I have developed an interest towards reverse engineering systems, be 
-that <a href="https://lilith.rs/blog?collection=meow" target="_blank">re-creating currently 
-operational systems</a> or <a href="https://lilith.rs/blog?collection=neeko" target="_blank">
+that <a href="https://lilith.rs/blog?group=meow" target="_blank">re-creating currently
+operational systems</a> or <a href="https://lilith.rs/blog?group=neeko" target="_blank">
 re-creating systems that no longer exist</a>.</p>
 
 <h2>Website</h2>
 
-<p>I often find myself needing to talk about a project whenever I'm stuck at a deadend or 
+<p>I often find myself needing to talk about a project whenever I'm stuck at a dead-end or
 if I'm starting to lose interest in the topic. By writing development posts I can nurture my 
 interest and slowly rebuild the motivation to continue working on my ambitious projects, these 
 posts might be low quality but I enjoy doing this :)</p>
 <p>I am not a designer (as indicated by the design of this website) so I am sorry if 
-this website looks awful or anything, the post pages look alright and thats my main 
+this website looks awful or anything, the post pages look alright and that's my main
 focus; I probably won't invest any more time in the design of the website.
 
 {% endblock body %}

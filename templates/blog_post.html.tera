@@ -9,6 +9,9 @@
     {{tag.tag}}{%if not loop.last%},{%endif%}
   {%endfor%}
 </small>
+{% if post.collection %}
+    <small>Collection: <a href="/blog?group={{post.collection}}"">{{post.collection}}</a></small>
+{% endif %}
 {% if post.hiatus_since %}
     <small class="hiatus">Note: This project has been on hiatus since: <span id="date">{{post.hiatus_since}}</span> <span id="since"></span></small>
 {% endif %}

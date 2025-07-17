@@ -1,5 +1,5 @@
-name: "Neeko"
-description: "Playing Frankenstein to create my own monster."
+name: "RTMP"
+description: "Reviving a dead protocol."
 tags:
   - "League of Legends"
   - "Reverse Engineering"
@@ -8,7 +8,7 @@ tags:
   - "RTMP"
   - "Respite"
   - "Neeko"
-content_path: "06-Neeko.md"
+content_path: "02-RTMP.md"
 blog_finished: false
 project_finished: false
 hiatus_since: "2025-05-19 14:57:00"

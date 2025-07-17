@@ -1,14 +1,14 @@
-name: "Neeko"
-description: "Playing Frankenstein to create my own monster."
+name: "Nexus"
+description: "Transitioning my website to web 2.0."
 tags:
   - "League of Legends"
   - "Reverse Engineering"
   - "Golang"
   - "Action Message Format"
   - "RTMP"
+  - "Nexus"
   - "Respite"
-  - "Neeko"
-content_path: "06-Neeko.md"
+content_path: "05-Nexus.md"
 blog_finished: false
 project_finished: false
 hiatus_since: "2025-05-19 14:57:00"
